@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LSC-MC:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LSC_MC_jar</output-path>
+    <root id="archive" name="LSC-MC.jar">
+      <element id="module-output" name="LSC-MC.main" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources" />
+    </root>
+  </artifact>
+</component>

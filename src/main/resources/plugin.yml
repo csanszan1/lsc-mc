@@ -1,0 +1,46 @@
+name: LSC-MC
+version: '1.0-SNAPSHOT'
+main: hu.csanszan1.lscmc.main
+api-version: '1.21'
+prefix: LSC-MC
+authors: [ csanszan1 ]
+description: A Paper plugin for Logiscool Minecraft Summer Camps
+commands:
+  lschelp:
+    description: Kiírja, hogy milyen parancsok elérhetőek ehhez a pluginhoz
+    usage: /lsc help
+  pvp:
+    description: Ki/be lehet kapcsolni vele a pvp-t
+    usage: /pvp
+    permission: lsc.pvp
+  tpa:
+    description: Teleport kérés küldése valakinek
+    usage: /tpa <játékos>
+    permission: lsc.tpa
+  tpaccept:
+    description: Teleport kérés elfogadása
+    usage: /tpaccept
+    permission: lsc.tpa
+  tpdeny:
+    description: Teleport kérés elutasítása
+    usage: /tpdeny
+    permission: lsc.tpa
+  protect:
+    description: Terület levédés
+    usage: /protect <poz1|poz2|létrehoz|megbízok>
+    permission: lsc.createProtect
+  spectate:
+    description: Az összes játékost a parancs végrehajtójának szemszögébe helyezi
+    usage: /spectate
+    permission: lsc.spectate
+permissions:
+  lsc.pvp:
+    default: op
+  lsc.tpa:
+    default: true
+  lsc.createProtect:
+    default: true
+  lsc.spectate:
+    default: op
+  lsc.overrideProtect:
+    default: op
