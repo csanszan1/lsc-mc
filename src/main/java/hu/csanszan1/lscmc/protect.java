@@ -60,7 +60,7 @@ public class protect implements CommandExecutor {
 
         }
         else {
-            player.sendMessage("Használat: /protect <poz1|poz2|létrehoz|megbízok>");
+            player.sendMessage("Használat: /protect <poz1 | poz2 | létrehoz | megbízok>");
         }
 
         return true;
