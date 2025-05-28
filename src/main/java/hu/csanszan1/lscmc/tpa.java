@@ -35,6 +35,9 @@ public class tpa implements CommandExecutor {
                     .append(Component.text("/tpdeny", NamedTextColor.GOLD))
                     .append(Component.text(" parancsot.", NamedTextColor.YELLOW));
             teleportTo.sendMessage(tpaText);
+            sender.sendMessage(Component.text("Elküldtél egy teleport kérelmet ",NamedTextColor.YELLOW)
+                    .append(Component.text(teleportTo.getName(), NamedTextColor.GOLD)
+                    .append(Component.text(" részére", NamedTextColor.YELLOW))));
         }
         if(command.getName().equals("tpaccept")) {
             UUID requesterUUID = teleportRequests.get(((Player) sender).getUniqueId());
@@ -42,7 +45,7 @@ public class tpa implements CommandExecutor {
                 sender.sendMessage(Component.text("Nincs aktív teleport kérelmed.", NamedTextColor.YELLOW));
                 return true;
             }
-            Player requester = Bukkit.getPlayer(teleportRequests.get(requesterUUID));
+            Player requester = Bukkit.getPlayer(requesterUUID);
             if(requester == null) {
                 sender.sendMessage(Component.text("Ez a játékos már valószínűleg elhagyta a szervert.", NamedTextColor.DARK_RED));
                 return true;
@@ -57,9 +60,9 @@ public class tpa implements CommandExecutor {
                 sender.sendMessage(Component.text("Nincs aktív teleport kérelmed.", NamedTextColor.YELLOW));
                 return true;
             }
-            Player requester = Bukkit.getPlayer(teleportRequests.get(requesterUUID));
+            Player requester = Bukkit.getPlayer(requesterUUID);
             if(requester != null) {
-                requester.sendMessage(Component.text("A teleport kérelmed vissza lett utasítva.", NamedTextColor.DARK_RED));
+                requester.sendMessage(Component.text(sender.getName(), NamedTextColor.GOLD).append(Component.text(" visszautasította a teleport kérelmed.", NamedTextColor.DARK_RED)));
             }
             teleportRequests.remove(((Player) sender).getUniqueId());
             sender.sendMessage(Component.text("Kérelem visszautasítva.", NamedTextColor.YELLOW));
