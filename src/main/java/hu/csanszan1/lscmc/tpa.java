@@ -37,7 +37,7 @@ public class tpa implements CommandExecutor {
             teleportTo.sendMessage(tpaText);
             sender.sendMessage(Component.text("Elküldtél egy teleport kérelmet ",NamedTextColor.YELLOW)
                     .append(Component.text(teleportTo.getName(), NamedTextColor.GOLD)
-                    .append(Component.text(" részére", NamedTextColor.YELLOW))));
+                    .append(Component.text(" részére.", NamedTextColor.YELLOW))));
         }
         if(command.getName().equals("tpaccept")) {
             UUID requesterUUID = teleportRequests.get(((Player) sender).getUniqueId());

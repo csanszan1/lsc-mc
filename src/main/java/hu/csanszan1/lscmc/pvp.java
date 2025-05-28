@@ -31,14 +31,14 @@ public class pvp implements CommandExecutor, Listener {
             final TextComponent textComponent = Component.text("[LSC-MC] ")
                     .append(Component.text("A PVP ", NamedTextColor.YELLOW))
                     .append(Component.text("BE ", NamedTextColor.DARK_GREEN))
-                    .append(Component.text("lett kappcsolva", NamedTextColor.YELLOW));
+                    .append(Component.text("lett kapcsolva", NamedTextColor.YELLOW));
             sender.sendMessage(textComponent);
         }
         else {
             final TextComponent textComponent = Component.text("[LSC-MC] ")
                     .append(Component.text("A PVP ", NamedTextColor.YELLOW))
                     .append(Component.text("KI ", NamedTextColor.DARK_RED))
-                    .append(Component.text("lett kappcsolva", NamedTextColor.YELLOW));
+                    .append(Component.text("lett kapcsolva", NamedTextColor.YELLOW));
             sender.sendMessage(textComponent);
         }
         return true;
