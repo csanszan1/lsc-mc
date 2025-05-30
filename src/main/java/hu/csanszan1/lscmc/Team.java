@@ -5,21 +5,21 @@ import java.util.*;
 
 public class Team {
     private final String name;
-    private final String creater;
+    private final String creator;
     private Set<String> members;
     private String chatPrefix;
     private NamedTextColor chatColor;
 
-    public Team(String name, String creater) {
+    public Team(String name, String creator) {
         this.name = name;
-        this.creater = creater;
+        this.creator = creator;
         this.members = new HashSet<>();
         this.chatPrefix = "[" + name + "] ";
         this.chatColor = NamedTextColor.BLUE;
     }
 
     public String getName() {return name;}
-    public String getCreater() {return name;}
+    public String getcreator() {return name;}
     public String getMembers() {return name;}
     public String getChatPrefix() {return name;}
     public String getCharColor() {return name;}

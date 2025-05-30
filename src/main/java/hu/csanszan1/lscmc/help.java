@@ -12,6 +12,8 @@ public class help implements CommandExecutor {
                 /pvp - Ki/be lehet kapcsolni a pvp-t
                 /protect <poz1|poz2|megbíz|reload> - Teület levédése
                 /spectate
+                /team - Csapat kezelő parancsok
+                /tpa <Játékos> - Teleport kérelem
                 """);
         return true;
     }

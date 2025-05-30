@@ -16,11 +16,16 @@ public final class main extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        Listener dummyListener = new Listener() {};
+        Listener dummyListener = new Listener() {
+        };
         pvp pvpClass = new pvp();
         tpa tpaClass = new tpa();
         spectate spectateClass = new spectate();
         zoneManager zoneMgr = new zoneManager(getDataFolder());
+
+        teamManager = new TeamManager();
+        TeamCommands teamCommands = new TeamCommands(teamManager);
+
         this.getCommand("lschelp").setExecutor(new help());
         this.getCommand("pvp").setExecutor(pvpClass);
         this.getCommand("tpa").setExecutor(tpaClass);
@@ -28,6 +33,15 @@ public final class main extends JavaPlugin {
         this.getCommand("tpdeny").setExecutor(tpaClass);
         this.getCommand("spectate").setExecutor(spectateClass);
         this.getCommand("protect").setExecutor(new protect(zoneMgr));
+
+
+        // Team commands
+        this.getCommand("team create").setExecutor(teamCommands);
+        this.getCommand("team add").setExecutor(teamCommands);
+        this.getCommand("team remove").setExecutor(teamCommands);
+        this.getCommand("team delete").setExecutor(teamCommands);
+        this.getCommand("team list").setExecutor(teamCommands);
+
         getServer().getPluginManager().registerEvents(new ZoneProtectionListener(zoneMgr), this);
         getServer().getPluginManager().registerEvent(EntityDamageByEntityEvent.class, pvpClass, EventPriority.HIGH, new EventExecutor() {
             @Override
@@ -37,6 +51,7 @@ public final class main extends JavaPlugin {
                 }
             }
         }, this);
+
 
 
 

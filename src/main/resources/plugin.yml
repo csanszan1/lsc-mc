@@ -33,6 +33,29 @@ commands:
     description: Az összes játékost a parancs végrehajtójának szemszögébe helyezi
     usage: /spectate
     permission: lsc.spectate
+  team:
+    description: Base alias for team
+    usage: /team
+    permission: lsc.team
+  team create:
+    description: Egy új csapatot létrehozni
+    usage: /team create <team neve>
+    permission: lsc.team.create
+  team add:
+    description: Játékos hozzáadása a csapathoz.
+    usage: /team add <team neve> <Játékos neve>
+    permission: lsc.team.add
+  team delete:
+    description: Játékos eltávolítása a csapatból.
+    permission: lsc.team.delete
+  team remove:
+    description: Játékos eltávolítása a csapatból
+    permission: lsc.team.remove
+  team list:
+    description: Csatapok listázása
+    permission: lsc.team.list
+
+
 permissions:
   lsc.pvp:
     default: op
@@ -43,4 +66,22 @@ permissions:
   lsc.spectate:
     default: op
   lsc.overrideProtect:
+    default: op
+  lsc.team:
+    description: Alapvető team parancsok
+    default: true
+  lsc.team.create:
+    description: Új csapat létrehozása
+    default: op
+  lsc.team.add:
+    description: Játékos hozzáadása csapathoz
+    default: op
+  lsc.team.remove:
+    description: Játékos eltávolítása a csapatból
+    default: op
+  lsc.team.delete:
+    description: Csapat törlése
+    default: op
+  lsc.team.list:
+    description: Csapatok listázása
     default: op
