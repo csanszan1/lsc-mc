@@ -1,0 +1,4 @@
+plots:
+  plotSize: 32
+  roadWith: 5
+  groundHeight: 64
