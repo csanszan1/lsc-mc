@@ -34,7 +34,7 @@ public final class main extends JavaPlugin {
         this.getCommand("spectate").setExecutor(spectateClass);
         this.getCommand("protect").setExecutor(new protect(zoneMgr));
 
-
+        this.getCommand("plot").setExecutor(new PlotCommands());
         // Team commands
         this.getCommand("team create").setExecutor(teamCommands);
         this.getCommand("team add").setExecutor(teamCommands);
