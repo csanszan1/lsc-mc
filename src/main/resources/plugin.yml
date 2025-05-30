@@ -33,6 +33,10 @@ commands:
     description: Az összes játékost a parancs végrehajtójának szemszögébe helyezi
     usage: /spectate
     permission: lsc.spectate
+  plot:
+    description: Telkek
+    usage: /plot
+    permission: lsc.plot
   team:
     description: Base alias for team
     usage: /team
