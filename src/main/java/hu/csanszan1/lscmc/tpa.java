@@ -23,6 +23,10 @@ public class tpa implements CommandExecutor {
                 return true;
             }
             Player teleportTo = Bukkit.getPlayerExact(args[0]);
+            if(sender.getName().equals(teleportTo.getName())) {
+                sender.sendMessage(Component.text("Nem tudsz saját magadnak teleport kérést küldeni.",NamedTextColor.DARK_RED));
+                return true;
+            }
             if (teleportTo == null) {
                 sender.sendMessage(Component.text("Nincs ilyen játékos", NamedTextColor.DARK_RED));
                 return true;

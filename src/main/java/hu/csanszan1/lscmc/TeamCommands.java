@@ -1,7 +1,13 @@
 package hu.csanszan1.lscmc;
 
 import net.kyori.adventure.text.*;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.*;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
 import java.util.*;
 
 public class TeamCommands implements CommandExecutor {
@@ -15,27 +21,31 @@ public class TeamCommands implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         String cmd = command.getName().toLowerCase();
 
-        if (cmd.equals("team create")) {
+        if (args[0].equals("create")) {
             if (args.length < 1) {
                 sender.sendMessage("[LSC-MC] Használat: /team create <csapat neve>");
                 return true;
             }
 
-            String teamName = args[0];
-            if (teamManager.createTeam(teamName, sender.getName())) {
+            String teamName = args[1];
+            if (!teamManager.createTeam(teamName, sender.getName())) {
                 sender.sendMessage(Component.text("[LSC-MC] Már létezik ilyen csapat!", NamedTextColor.DARK_RED));
             }
+            teamManager.addPlayerToTeam(sender.getName(), teamName);
+            sender.sendMessage(Component.text("[LSC-MC] ").append(Component.text("A ", NamedTextColor.YELLOW)
+                    .append(Component.text(teamName, NamedTextColor.GOLD)
+                    .append(Component.text(" csapat létrehozva", NamedTextColor.YELLOW)))));
             return true;
         }
 
-        if (cmd.equals("team add")) {
-            if (args.length < 2) {
+        else if (args[0].equals("add")) {
+            if (args.length < 3) {
                 sender.sendMessage("[LSC-MC] Használat: /team add <csapat neve> <játékos neve>");
                 return true;
             }
 
-            String teamName = args[0];
-            String playerName = args[1];
+            String teamName = args[1];
+            String playerName = args[2];
 
             Player target = Bukkit.getPlayerExact(playerName);
             if (target == null) {
@@ -57,11 +67,26 @@ public class TeamCommands implements CommandExecutor {
             return true;
         }
 
-        if (cmd.equals("team list")) {
+        else if (args[0].equals("list")) {
             sender.sendMessage(Component.text("[LSC-MC] === CSAPATOK ===", NamedTextColor.GOLD));
 
             if (teamManager.getAllTeams().isEmpty()) {
                 sender.sendMessage(Component.text("[LSC-MC] Nincsenek csapatok", NamedTextColor.YELLOW));
+                return true;
+            }
+
+            if(args.length == 2) {
+                String names = "";
+                for (String playerName : teamManager.getMembers(args[1])) {
+                    names += playerName+"\n";
+                }
+                if(names.isEmpty()) {
+                    sender.sendMessage(Component.text("[LSC-MC] - Nincsenek tagjai ennek a csapatnak", NamedTextColor.YELLOW));
+                    return true;
+                }
+                names = names.strip();
+                sender.sendMessage(Component.text("[LSC-MC] - A csapat tagjai\n", NamedTextColor.YELLOW)
+                        .append(Component.text(names, NamedTextColor.GOLD)));
                 return true;
             }
 
@@ -75,6 +100,6 @@ public class TeamCommands implements CommandExecutor {
             return true;
         }
 
-        return false;
+        return true;
     }
 }

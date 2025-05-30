@@ -21,10 +21,12 @@ commands:
     description: Teleport kérés elfogadása
     usage: /tpaccept
     permission: lsc.tpa
+    aliases: [accept]
   tpdeny:
     description: Teleport kérés elutasítása
     usage: /tpdeny
     permission: lsc.tpa
+    aliases: [deny]
   protect:
     description: Terület levédés
     usage: /protect <poz1|poz2|létrehoz|megbízok>

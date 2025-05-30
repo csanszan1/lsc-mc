@@ -1,5 +1,6 @@
 package hu.csanszan1.lscmc;
 
+import io.papermc.paper.event.player.AsyncChatEvent;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.Event;
@@ -7,6 +8,7 @@ import org.bukkit.event.EventException;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.plugin.EventExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -23,7 +25,7 @@ public final class main extends JavaPlugin {
         spectate spectateClass = new spectate();
         zoneManager zoneMgr = new zoneManager(getDataFolder());
 
-        teamManager = new TeamManager();
+        TeamManager teamManager = new TeamManager();
         TeamCommands teamCommands = new TeamCommands(teamManager);
 
         this.getCommand("lschelp").setExecutor(new help());
@@ -36,14 +38,18 @@ public final class main extends JavaPlugin {
 
         this.getCommand("plot").setExecutor(new PlotCommands());
         // Team commands
-        this.getCommand("team create").setExecutor(teamCommands);
-        this.getCommand("team add").setExecutor(teamCommands);
-        this.getCommand("team remove").setExecutor(teamCommands);
-        this.getCommand("team delete").setExecutor(teamCommands);
-        this.getCommand("team list").setExecutor(teamCommands);
+        this.getCommand("team").setExecutor(teamCommands);
 
         getServer().getPluginManager().registerEvents(new ZoneProtectionListener(zoneMgr), this);
-        getServer().getPluginManager().registerEvent(EntityDamageByEntityEvent.class, pvpClass, EventPriority.HIGH, new EventExecutor() {
+        getServer().getPluginManager().registerEvent(AsyncPlayerChatEvent.class, teamManager, EventPriority.LOW, new EventExecutor() {
+            @Override
+            public void execute(@NotNull Listener listener, @NotNull Event event) throws EventException {
+                if (event instanceof AsyncPlayerChatEvent) {
+                    teamManager.onPlayerChat((AsyncPlayerChatEvent) event);
+                }
+            }
+        }, this);
+        getServer().getPluginManager().registerEvent(EntityDamageByEntityEvent.class, pvpClass, EventPriority.LOW, new EventExecutor() {
             @Override
             public void execute(@NotNull Listener listener, @NotNull Event event) throws EventException {
                 if (event instanceof EntityDamageByEntityEvent) {

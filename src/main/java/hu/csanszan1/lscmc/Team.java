@@ -20,12 +20,12 @@ public class Team {
 
     public String getName() {return name;}
     public String getcreator() {return name;}
-    public String getMembers() {return name;}
+    public Set<String> getMembers() {return members;}
     public String getChatPrefix() {return name;}
     public String getCharColor() {return name;}
 
     public void setChatPrefix(String chatPrefix) {this.chatPrefix = chatPrefix;}
-    public void setChatColor(NamedTextColor chatColor) {this.chatPrefix = chatPrefix}
+    public void setChatColor(NamedTextColor chatColor) {this.chatPrefix = chatPrefix;}
 
     public void addMember(String name) {
         members.add(name.toLowerCase());
